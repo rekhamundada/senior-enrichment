@@ -13,15 +13,15 @@
          <tr>
            <th><h3>FirstName</h3></th>
            <th><h3>LastName</h3></th>
-           <th><h3>Campus</h3></th>
-           <th>
+           <th><h3>Campus ID</h3></th>
+           <th><h3><span>
              <NavLink className="btn btn-success add-new" to="/new-student">
                <span className="glyphicon glyphicon-plus" /> New Student
              </NavLink>
-           </th>
+             </span></h3></th>
          </tr>
        </thead>
-       <tbody>
+       <tbody className="tbl-content">
          {
            this.props.students && this.props.students.map(student => (
              <tr key={student.id}>

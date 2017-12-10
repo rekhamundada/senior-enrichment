@@ -23,6 +23,7 @@ const Students = db.define('students', {
     validate: {
       notEmpty: true,
       isEmail: true
+      
     }
   },
   gpa: {

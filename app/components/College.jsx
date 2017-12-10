@@ -39,7 +39,7 @@ export class College extends Component {
           <div className="container-fluid">
         <Switch>
         {/* <Route exact path="/" component={App} /> */}
-        {/* <Route path="/" component={App} onEnter={onAppEnter}> */}
+          <Route exact path="/" component={HomeContainer} />
           <Route path="/home" component={HomeContainer} />
           <Route exact path="/campuses" component={Campuses} />
           <Route path="/new-campus" component={NewCampusContainer} />

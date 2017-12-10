@@ -12,7 +12,7 @@ export default class App extends Component {
     console.log('entering app');
   return (
     <div id="main">
-      <div>
+      <div className="background">
         <NavBar campuses={this.props.campuses} />
       </div>
       {/* <div>
