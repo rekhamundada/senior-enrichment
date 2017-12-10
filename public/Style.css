@@ -1,0 +1,295 @@
+.menu {
+  list-style: none;
+  /* Important for sizing problems when you add/remove the submenus
+   Make it use 100% of the size of your container */
+  width: 100%;
+  /* This prevents a lot of problems with the submenus.
+   UL have basic padding, keep that in mind */
+  padding: 0;
+}
+
+.menu li {
+  /* I wanted mine horizontal. Feel free to change it to what you want */
+  display:inline-block;
+  /* Float the items to the left, to make sure the disposition does not change when it shows the subitems */
+  float:left;
+  /* The -1px on top and right make it so that our borders end up above one another
+     Not needed it you don't have borders... */
+  margin:-1px -1px 0 0;
+}
+
+.menu li a {
+  display:block;
+
+
+  /* My basic styling. I'm just giving them a black text, with a black border, and center the text in the box. */
+  text-decoration:none;
+  border: 1px solid black;
+  vertical-align: middle;
+  text-align: center;
+
+  /* Fixed size is also just me.
+     Not fixing it just make huge boxes when you have submenus */
+  width:100px;
+  height:50px;
+  line-height: 50px;
+}
+
+.menu li > ul {
+/****** THE INTERESTING PART ******/
+/* We hide the submenus by putting them somewhere on the left, with no opacity. */
+  left:-9999px;
+  opacity: 0;
+
+/* We make transitions on opacity */
+  -webkit-transiton: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -ms-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.menu li:hover > ul {
+/* On hover, we get it back to its basic spot
+  left:0;
+/* And change the opacity to a fully visible one */
+  opacity: 1;
+}
+
+.circle {
+  -moz-border-radius: 50px/50px;
+  -webkit-border-radius: 50px 50px;
+  border-radius: 50%/50%;
+  border: solid 15px #999494;
+  background: #B3ACEC;
+  width: 100px;
+  height: 100px;
+}
+
+.square {
+  border: solid 2px  #CFCBC7;
+  width: 500px;
+  height: 500px;
+  background:  #788AC5;
+}
+
+.header {
+  display: flex;
+  padding: 0 2rem;
+  margin: auto;
+  border-radius: 0 0 2rem 2rem;
+}
+
+#main {
+  padding-left: 0; }
+
+sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 0 !important;
+  background: #303030;
+  height: calc(100vh - 56px);
+  width: inherit;
+  overflow-y: auto;
+  border-right: 2px solid #555; }
+  sidebar::-webkit-scrollbar{
+    width: 10px;
+    background-color: #222; }
+  sidebar::-webkit-scrollbar-thumb{
+    background-color: black;
+    -webkit-border-radius: 1ex; }
+  sidebar .logo {
+    width: 100%;
+    padding: 15px; }
+  sidebar section > * {
+    padding: 0 15px; }
+  sidebar .menu-item {
+    transition: border-left, 0.2s; }
+    sidebar .menu-item a {
+      color: #c8c8c8; }
+      sidebar .menu-item a:hover {
+        color: white; }
+    sidebar .menu-item.active, sidebar .menu-item:hover {
+      border-left: 3px solid #00bc8c; }
+
+.active {
+  border-left: 3px solid #00bc8c;
+}
+
+footer {
+  position: fixed;
+  background-color: #555;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+  padding: 8px; }
+  footer .bar {
+    overflow: hidden;
+    padding: 9px; }
+  footer .progress {
+    cursor: pointer; }
+  footer .progress-bar {
+    transition: none !important; }
+
+  body {
+    background: #2223;
+    padding-bottom: 56px;
+    font-size: 12px;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  navbar {
+    position: fixed;
+    margin-bottom: 0;
+    right: 0;
+    top: 0;
+    padding: 0 !important;
+    background: #303030;
+    height: calc(100vh - 56px);
+    width: inherit;
+    overflow-y: auto;
+    border-right: 2px solid #555; }
+    navbar::-webkit-scrollbar{
+      width: 10px;
+      background-color: #222; }
+    navbar::-webkit-scrollbar-thumb{
+      background-color: black;
+      -webkit-border-radius: 1ex; }
+    navbar section > * {
+      padding: 0 15px; }
+    navbar .menu-item {
+      color: white;
+      transition: border-left, 0.2s; }
+      navbar .menu-item a {
+        color: #c8c8c8; }
+        navbar .menu-item a:hover {
+          color: white; }
+      navbar .menu-item.active, navbar .menu-item:hover {
+        border-left: 3px solid #00bc8c; }
+
+  .campus img {
+    height: 150px;
+  }
+
+  td {
+    font-size: 20px;
+  }
+  .img-thumbnail {
+    max-width: 30%;
+  }
+
+  .campus-delete {
+    position: relative;
+    top: -70px;
+    float: right;
+    right: 10px;
+  }
+
+  .background {
+    background-image: url("iim-ahmedabad.jpg");
+    padding: 25%;
+  }
+
+  .fantasy {
+    font-family: fantasy;
+  }
+  .stats {
+    font-size: 2em;
+  }
+  .add-new {
+    float: right;
+    position: relative;
+    padding: 5px;
+  }
+  .add-student-to-campus {
+    position: relative;
+    float: right;
+  }
+  .campus-edit {
+    position: relative;
+    float: right;
+    width: 75px;
+    padding: 0.5em;
+  }
+
+  .heading {
+    height: 60px;
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #2e333880
+  }
+
+  .spacing {
+    margin: 2% 0;
+  }
+
+  .form-width {
+    width: 50%;
+  }
+
+  .table-margin {
+    margin: 2% 0;
+  }
+
+  .campus-style h4 {
+    font-size: 30px;
+  }
+
+  .campus-style {
+    box-sizing: border-box;
+    font-size: 20px;
+    background-color: #BFEBFC;
+    margin: 1% 0;
+    padding: 2%;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  h1{
+    font-size: 30px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  table{
+    width:100%;
+    table-layout: fixed;
+    background-color:#2e333880
+  }
+  .tbl-header{
+    background-color: #2e333880;
+   }
+  .tbl-content{
+    height:300px;
+    overflow-x:auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  th{
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  td{
+    padding: 15px;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 300;
+    font-size: 12px;
+    color: #fff;
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+  }

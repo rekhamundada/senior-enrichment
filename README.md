@@ -7,8 +7,8 @@ Make a thing!
 1. Fork and clone this repo
 2. *Set the name of your project in `package.json`*. The skeleton intentionally ships with an invalid name.
 3. `npm install`
-4. Check out the mock-view in the `wireframes` folder
-5. Start the build process and your application with: `npm run start:dev`
+4. Check out the mock-view in the `wireframes` foldernpm run start:dev
+5. Start the build process and your application with: ``
 6. If you navigate to the URL you should see some UI already :) [We already have some connection code to get you started]
 
 ## Requirements

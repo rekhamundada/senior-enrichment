@@ -4,16 +4,12 @@ import React, { Component } from 'react';
    This code is just a nice BIG example of how you can make a component.
    Also it is HILARIOUS :D Have fun!
  */
- 
+
 export default class WinterJokes extends Component {
   constructor() {
     super()
     this.nextJoke = this.nextJoke.bind(this)
     this.answer = this.answer.bind(this)
-  }
-
-  componentDidMount() {
-    this.nextJoke()
   }
 
   nextJoke() {
@@ -30,7 +26,7 @@ export default class WinterJokes extends Component {
   render() {
     if (!this.state) { return null }
 
-    const {joke, answered} = this.state    
+    const {joke, answered} = this.state
     return (
       <div>
         <h1 onClick={answered ? this.nextJoke : this.answer}>{joke.q}</h1>
@@ -66,7 +62,7 @@ Q: What did the ocean say to the bergy bits?
 A: Nothing. It just waved.
 Q: What sits on the bottom of the cold Arctic Ocean and shakes?
 A: A nervous wreck.
-Q: How do you know if there's a snowman in your bed? 
+Q: How do you know if there's a snowman in your bed?
 A: You wake up wet!
 Q: How do you tell the difference between a walrus and an orange?
 A: Put your arms around it and squeeze it. If you don't get orange juice, it's a walrus.

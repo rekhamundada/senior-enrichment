@@ -1,4 +1,4 @@
-'use strict'; 
+'use strict';
 
 const express = require('express');
 const path = require('path');
@@ -18,6 +18,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/api', require('./api')); // include our routes!
+const campusRouter = require('./api/campusRoutes.js');
+const studentRouter = require('./api/studentRoutes.js');
+app.use('/campuses', campusRouter);
+app.use('/students', studentRouter);
+
+//testing this route, can be removed
+app.get('/news', function(request, response){
+	response.json({name: 'NewsRoute', data: '12345'});
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
