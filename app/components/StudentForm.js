@@ -70,7 +70,7 @@ export default function StudentForm (props) {
                 className="form-control"
                 name="gpa"
                 placeholder="e.g. 3.5"
-                type="number"
+                type="number" step="any"
                 onChange={handleGpaChange}
                 value={gpa}
               />

@@ -12,10 +12,10 @@ export default class Navbar extends Component {
             <NavLink to="/home" className="heading">Senior Enrichment</NavLink>
           </div>
           <div className="navbar">
-          <div class="menu-item">
+          <div className="menu-item">
             <NavLink to="/campuses">CAMPUSES</NavLink>
           </div>
-          <div class="menu-item">
+          <div className="menu-item">
           <Link to="/students">STUDENTS</Link>
           </div>
         </div>

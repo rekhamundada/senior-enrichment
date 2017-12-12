@@ -10,22 +10,31 @@ export function Student (props) {
 
   return (
     <div>
-      <div className='centered'>
-        <h2>Student Details: </h2>
+      <div className="heading">
+          <h2>Student Details</h2>
       </div>
-      <table className='table'>
-        <tbody>
+      <div className="row">
+          <div className="col-xs-2">
+          <NavLink className='btn btn-default' to={`/students/${student.id}/edit`}>Edit Student</NavLink>
+          </div>
+          </div>
+
+      <table cellPadding="0" cellSpacing="0">
+        <thead>
+              <tr>
+                <th>First Name </th>
+                <th>Last Name </th>
+                <th>Student GPA</th>
+                <th>Student Email</th>
+                <th>Campus ID</th>
+              </tr>
+        </thead>
+        <tbody className="tbl-content">
           <tr>
-            <td>First Name:</td><td>{student.firstName}</td>
-          </tr>
-          <tr>
-            <td>Last Name:</td><td>{student.lastName}</td>
-          </tr>
-          <tr>
-            <td>Email:</td><td>{student.email}</td>
-          </tr>
-          <tr>
-            <td>Campus:</td>
+            <td>{student.firstName}</td>
+            <td>{student.lastName}</td>
+            <td>{student.gpa}</td>
+            <td>{student.email}</td>
             <td>
               <NavLink to={`/campuses/${student.campusId}`}>
                 <td>{student.campusId ? student.campusId : 'None'}</td>
@@ -34,7 +43,6 @@ export function Student (props) {
           </tr>
         </tbody>
       </table>
-      <NavLink className='btn btn-default' to={`/students/${student.id}/edit`}>Edit</NavLink>
     </div>
   )
 }

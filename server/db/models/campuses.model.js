@@ -12,7 +12,7 @@ const Campuses = db.define('campuses', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: "http://visitosu.oregonstate.edu/sites/visitosu.oregonstate. edu/files/20150417_ettihad_ho3977.jpg"
+    defaultValue: "iim-ahmedabad.jpg"
 
   },
   description: {
