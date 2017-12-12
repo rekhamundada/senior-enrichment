@@ -44,7 +44,7 @@ export function deleteCampus(campusDeleted) {
   };
   return action;
 }
-//Thunk creators
+//Thunk Functions
 export function fetchCampuses() {
     return function thunk (dispatch) {
       return axios.get('/api/campuses')
@@ -62,7 +62,8 @@ export function fetchCampuses() {
         .then(campus => {
           const action = getSingleCampus(campus);
           dispatch(action);
-        });
+        })
+        .catch(console.error.bind(console));
     };
   }
   export  function makeNewCampus(name, image) {
@@ -74,9 +75,7 @@ export function fetchCampuses() {
         const action = createNewCampus(createdCampus);
         dispatch(action);
       })
-      .catch(function(error){
-        console.log(error);
-      });
+      .catch(console.error.bind(console));
     };
   }
   export function deleteTheCampus(id) {
@@ -87,10 +86,10 @@ export function fetchCampuses() {
         const action = deleteCampus(campusDeleted);
         dispatch(action);
       })
-      .catch(console.error('not deleted'));
+      .catch(console.error.bind(console));
     };
   }
-	//	.catch(console.error.bind(console));
+
 
   export function updateTheCampus(id, campusUpdate) {
     return function thunk (dispatch) {

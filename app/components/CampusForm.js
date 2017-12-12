@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function CampusForm (props) {
-  //methods passed down from container to handle form events
   const handleNameChange = props.handleNameChange;
   const handleImageChange = props.handleImageChange;
   const handleSubmit = props.handleSubmit;
@@ -32,10 +31,10 @@ export default function CampusForm (props) {
           <div className="form-group">
             <label className="col-xs-2 control-label">Image</label>
             <div className="col-xs-10">
-              <input
+            <input
                 className="form-control"
                 name="image"
-                placeholder="Campus Image url: http://lorempixel.com/500/500/city/5"
+                placeholder="e.g.Campus Image url: http://lorempixel.com/500/500/city/5"
                 type="text"
                 onChange={handleImageChange}
                 value={image}

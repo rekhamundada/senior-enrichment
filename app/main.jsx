@@ -5,8 +5,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import College from './components/College';
 
-
-render (
+render(
   <Provider store={store}>
     <College />
   </Provider>,

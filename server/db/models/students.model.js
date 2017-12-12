@@ -23,7 +23,6 @@ const Students = db.define('students', {
     validate: {
       notEmpty: true,
       isEmail: true
-      
     }
   },
   gpa: {
@@ -35,7 +34,7 @@ const Students = db.define('students', {
   },
   name: {
     type: Sequelize.VIRTUAL,
-    get(){
+    get() {
       return this.getDataValue('firstName') + ' ' +  this.getDataValue('lastName');
     }
   },

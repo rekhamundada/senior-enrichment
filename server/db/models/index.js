@@ -10,7 +10,7 @@ const db = require('../index.js');
 const Campuses = require('./campuses.model');
 const Students = require('./students.model');
 
-Campuses.hasMany(Students, {onDelete: 'cascade', hooks: true});
+Campuses.hasMany(Students, { onDelete: 'cascade', hooks: true });
 Students.belongsTo(Campuses);
 
 module.exports = db;

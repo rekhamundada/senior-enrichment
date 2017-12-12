@@ -18,7 +18,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class EditCampusContainer extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +25,6 @@ class EditCampusContainer extends Component {
       image: props.campus.image,
       dirty: false
     };
-
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,7 +48,7 @@ class EditCampusContainer extends Component {
   }
 
   handleSubmit (evt) {
-    evt.preventDefault(); //preventing bubling up
+    evt.preventDefault();
     this.props.editOne(this.state.name, this.state.image);
   }
 
@@ -68,9 +66,9 @@ class EditCampusContainer extends Component {
 
     return (
       <CampusForm
-        handleNameChange={this.handleNameChange}
-        handleImageChange={this.handleImageChange}
-        handleSubmit={this.handleSubmit}
+        handleNameChange= {this.handleNameChange}
+        handleImageChange= {this.handleImageChange}
+        handleSubmit= {this.handleSubmit}
         name={name}
         image={image}
         warning={warning}
@@ -80,7 +78,4 @@ class EditCampusContainer extends Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EditCampusContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EditCampusContainer);

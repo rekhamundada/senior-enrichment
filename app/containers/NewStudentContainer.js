@@ -3,8 +3,6 @@ import StudentForm from '../components/StudentForm';
 import { makeNewStudent } from '../reducers/student-store';
 import { connect } from 'react-redux';
 
-
-
 class NewStudentContainer extends Component {
   constructor(props) {
     super(props);
@@ -14,21 +12,19 @@ class NewStudentContainer extends Component {
       email: '',
       gpa: '',
       campusId: '',
-      dirty: false
+     // dirty: false
     };
-
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleCampusChange = this.handleCampusChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  //  this.handleChange = this.handleChange.bind(this)
     this.handleGpaChange = this.handleGpaChange.bind(this);
+    //this.handleChange = this.handleChange.bind(this);
   }
   // handleChange(evt){
-  //   const newState = {}
-  //   newState[evt.target.name] = evt.target.value;
-  //   this.setState(newState);
+  //   evt.preventDefault();
+  //   this.setState({ [evt.target.name]: evt.target.value });
   // }
   handleFirstNameChange (evt) {
     evt.preventDefault();
@@ -38,6 +34,30 @@ class NewStudentContainer extends Component {
       dirty: true
     });
   }
+  handleLastNameChange (evt) {
+    evt.preventDefault();
+    let lastNameValue = evt.target.value;
+    this.setState({
+      lastName: lastNameValue,
+      //dirty: true
+    });
+  }
+  handleEmailChange (evt) {
+    evt.preventDefault();
+    let emailValue = evt.target.value;
+    this.setState({
+      email: emailValue,
+     // dirty: true
+    });
+  }
+  handleCampusChange (evt) {
+    evt.preventDefault();
+    let campusValue = evt.target.value;
+    this.setState({
+      campusId: campusValue
+    });
+  }
+
   handleGpaChange (evt) {
     evt.preventDefault();
     let gpa = evt.target.value;
@@ -47,37 +67,10 @@ class NewStudentContainer extends Component {
     });
   }
 
-  handleLastNameChange (evt) {
-    evt.preventDefault();
-    let lastNameValue = evt.target.value;
-    this.setState({
-      lastName: lastNameValue,
-      dirty: true
-    });
-  }
-
-  handleEmailChange (evt) {
-    evt.preventDefault();
-    let emailValue = evt.target.value;
-    this.setState({
-      email: emailValue,
-      dirty: true
-    });
-  }
-
-  handleCampusChange (evt) {
-    evt.preventDefault();
-    let campusValue = evt.target.value;
-    this.setState({
-      campusId: campusValue
-    });
-  }
-
   handleSubmit (evt) {
-    console.log('in handleSubmit', this.state.firstName);
-    evt.preventDefault(); //preventing bubling up
-    this.props.addNewStudent(this.state.firstName, this.state.lastName, this.state.email, this.state.gpa,this.state.campusId); //submit new items to props
-    //resetting the form fields after submission
+    evt.preventDefault();
+    this.props.addNewStudent(this.state.firstName, this.state.lastName, this.state.email, this.state.gpa,this.state.campusId);
+
     this.setState({
       firstName: '',
       lastName: '',
@@ -95,7 +88,7 @@ class NewStudentContainer extends Component {
     let campuses = this.props.campuses;
     let gpa = this.props.gpa;
     let campusId = this.state.campusId;
-    const dirty = this.state.dirty;
+    let dirty = this.state.dirty;
     let warning = '';
 
     if (!firstName && !lastName && !email ) {
@@ -109,6 +102,8 @@ class NewStudentContainer extends Component {
         handleLastNameChange={this.handleLastNameChange}
         handleEmailChange={this.handleEmailChange}
         handleCampusChange={this.handleCampusChange}
+        handleGpaChange={this.handleGpaChange}
+        //handleChange= {this.handleChange}
         handleSubmit={this.handleSubmit}
         firstName={firstName}
         lastName={lastName}
@@ -124,15 +119,14 @@ class NewStudentContainer extends Component {
 }
 const mapStateToProps = state => {
   return {
-    campuses: state.campuses.list,
+    campuses: state.campuses,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    //have two items to pass into adding a new campus: the name and the image
     addNewStudent (studentFirstName, studentLastName, studentEmail,studentGpa, studentCampus) {
-      dispatch(makeNewStudent(studentFirstName, studentLastName, studentEmail,studentGpa, studentCampus));//dispatching the action to add a new campus
+    dispatch(makeNewStudent(studentFirstName, studentLastName, studentEmail, studentGpa, studentCampus));
     }
   };
 };

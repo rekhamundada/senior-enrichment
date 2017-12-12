@@ -1,94 +1,88 @@
-import React, { Component } from 'react';
-import CampusForm from '../components/CampusForm';
-import { createNewCampus, makeNewCampus } from '../reducers/campus-store';
-import { connect } from 'react-redux';
-
-//modify this container to double as an edit container as well.? Or create a new container
-//if so, I need to pass down the currently selected campus to the whole form
-//get the currently selected campus from state.
+import React, { Component } from 'react'
+import CampusForm from '../components/CampusForm'
+import { makeNewCampus } from '../reducers/campus-store'
+import { connect } from 'react-redux'
 
 class NewCampusContainer extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       name: '',
       image: '',
       dirty: false
-    };
+    }
 
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleImageChange = this.handleImageChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handleImageChange = this.handleImageChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+        // this.handleChange = this.handleChange.bind(this)
   }
-
+    // handleChange(evt) {
+    //   this.setState({ [evt.target.name]: evt.target.value, dirty:true});
+    // }
   handleNameChange (evt) {
-    evt.preventDefault();
-    let nameValue = evt.target.value;
+    evt.preventDefault()
+    let nameValue = evt.target.value
     this.setState({
       name: nameValue,
       dirty: true
-    });
+    })
   }
 
   handleImageChange (evt) {
-    evt.preventDefault();
-    let imageValue = evt.target.value;
+    evt.preventDefault()
+    let imageValue = evt.target.value
     this.setState({
       image: imageValue
-    });
+    })
   }
 
   handleSubmit (evt) {
-    evt.preventDefault(); //preventing bubling up
-    console.log('this is the name i want to insert for campus', this.state.name);
-    this.props.makeNewCampus(this.state.name, this.state.image); //submit new items to props
-    //resetting the form fields after submission
+    evt.preventDefault()
+    console.log('this is the name i want to insert for campus', this.state.name)
+        // made changes addnewcampus earlier it was makenewcamus
+    this.props.addNewCampus(this.state.name, this.state.image) // submit new items to props
+        // resetting the form fields after submission
     this.setState({
       name: '',
       image: '',
       dirty: false
-    });
+    })
   }
 
   render () {
-    let image = this.state.image;
-    let name = this.state.name;
-    const dirty = this.state.dirty;
-    let warning = '';
+    let image = this.state.image
+    let name = this.state.name
+    const dirty = this.state.dirty
+    let warning = ''
 
-    if (!name && dirty) {
-      warning = 'You must enter a name';
-    } else if (name.length > 16) {
-      warning = 'The campus name is too long (limit: 16 characters)';
-    }
+    if (!name) {warning = 'You must enter a name'}
 
     return (
       <CampusForm
+                // handleChange = {this.handleChange}
         handleNameChange={this.handleNameChange}
         handleImageChange={this.handleImageChange}
         handleSubmit={this.handleSubmit}
         name={name}
         image={image}
         warning={warning}
-        formTitle="Add Campus"
-      />
-    );
-  }
-}
-const mapStateToProps = (state) => {
+        formTitle='Add Campus'
+            />
+            )
+          }
+        }
+const mapStateToProps = state => {
   return {
-    state : state
-  }
-}
-const mapDispatchToProps = (dispatch) => {
+    state: state
+  };
+};
+const mapDispatchToProps = dispatch => {
   return {
-    //have two items to pass into adding a new campus: the name and the image
-    makeNewCampus (campusName, campusImage) {
-      console.log('define campusImage', campusImage);
-      dispatch(makeNewCampus(campusName, campusImage)); //dispatching the action to add a new campus
+    addNewCampus (campusName, campusImage) {
+      console.log('define campusImage', campusImage)
+      dispatch(makeNewCampus(campusName, campusImage))
     }
   };
 };
-export default connect(mapStateToProps,
-  mapDispatchToProps
-)(NewCampusContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(NewCampusContainer);

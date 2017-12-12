@@ -3,11 +3,8 @@ import StudentForm from '../components/StudentForm';
 import { updateTheStudent } from '../reducers/student-store';
 import { connect } from 'react-redux';
 
-
-
 class EditStudentContainer extends Component {
-
-  constructor(props) {
+  constructor (props) {
     console.log('EditStudentContainer', props);
     super(props);
     this.state = {
@@ -19,7 +16,6 @@ class EditStudentContainer extends Component {
       campusId: props.student.campusId,
       dirty: false
     };
-
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -74,16 +70,20 @@ class EditStudentContainer extends Component {
 
   handleSubmit (e) {
     console.log('enterning handle submit');
-    e.preventDefault(); //preventing bubling up
+    e.preventDefault();
+    console.log('enterning firstName submit', e.target.firstName.value);
+    console.log('enterning lastName submit', e.target.lastName.value);
+    console.log('enterning gpa submit', e.target.gpa.value);
+    console.log('enterning email submit', e.target.email.value);
+    console.log('enterning campus submit', e.target.campus.value);
     const student = {
-        firstName: e.target.firstName.value,
-        lastName: e.target.lastName.value,
-        gpa: e.target.gpa.value,
-        email: e.target.email.value,
-        campusId: e.target.campus.value
-    }
-    console.log('constructed new Student object', student);
-    this.props.editOne(this.state.id, student); //submit new items to props
+      firstName: e.target.firstName.value,
+      lastName: e.target.lastName.value,
+      gpa: e.target.gpa.value,
+      email: e.target.email.value,
+      campusId: e.target.campus.value
+    };
+    this.props.editOne(this.state.id, student);
   }
 
   render () {
@@ -115,8 +115,8 @@ class EditStudentContainer extends Component {
         campusId={campusId}
         campuses={campuses}
         warning={warning}
-        formTitle="Edit Student"
-      />
+        formTitle= "Edit Student"
+            />
     );
   }
 }
@@ -126,19 +126,16 @@ const mapStateToProps = function (state, ownProps) {
   return {
     campuses: state.campuses,
     student: state.students.find(student => student.id === +studentId)
-  }
-}
+  };
+};
 
 const mapDispatchToProps = function (dispatch, ownProps) {
-  //const studentId = ownProps.match.params.studentId;
+    const studentId = ownProps.match.params.studentId;
   return {
     editOne (studentId, student) {
       dispatch(updateTheStudent(studentId, student));
     }
   };
-}
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EditStudentContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EditStudentContainer);

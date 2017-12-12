@@ -5,8 +5,8 @@
  import { deleteTheStudent } from '../reducers/student-store';
 
  export class Students extends Component {
+
    render(){
-   console.log('enterning students', this.props);
    return (
     <table className="table">
        <thead>
@@ -15,7 +15,7 @@
            <th><h3>LastName</h3></th>
            <th><h3>Campus ID</h3></th>
            <th><h3><span>
-             <NavLink className="btn btn-success add-new" to="/new-student">
+             <NavLink className="btn btn-success add-new" to="/newstudent">
                <span className="glyphicon glyphicon-plus" /> New Student
              </NavLink>
              </span></h3></th>
@@ -51,7 +51,7 @@ const mapDispatchToProps = (dispatch) => {
   console.log('entering mapDispatchToProps of StudentsContainer' );
   return {
     deleteOne (studentId) {
-      dispatch(deleteTheStudent(studentId)); //dispatching the action to add a new campus
+      dispatch(deleteTheStudent(studentId)); //dispatching the action to delete a student
     }
   };
 };

@@ -45,7 +45,7 @@ export function deleteStudent(studentDeleted) {
   };
   return action;
 }
-//Thunk creators
+//Thunk Functions
 export function fetchStudents() {
     return function thunk (dispatch) {
       return axios.get('/api/students')
@@ -53,9 +53,10 @@ export function fetchStudents() {
         .then(students => {
           const action = getAllstudents(students);
           dispatch(action);
-        });
+        })
+        .catch(console.error.bind(console));
     };
-  }
+}
   export function singleStudent(studentId) {
     return function thunk (dispatch) {
       return axios.get(`/api/students/${studentId}`)
@@ -64,24 +65,21 @@ export function fetchStudents() {
           const action = getStudentById(student);
           dispatch(action);
         })
-        .catch(console.error('not found'));
+        .catch(console.error.bind(console))
     };
   }
   export  function makeNewStudent(firstName, lastName, email, gpa, campusId) {
     return function thunk (dispatch) {
-     return axios.post('/api/students', {firstName: firstName, lastName: lastName, email: email, gpa: '3.7', campusId: '2'})
+     return axios.post('/api/students', {firstName: firstName, lastName: lastName, email: email, gpa: gpa, campusId: campusId})
       .then(res =>  res.data)
       .then(createdStud => {
         const action = createNewStudent(createdStud);
         dispatch(action);
       })
-      .catch(function(error){
-        console.log(error)
-      });
+      .catch(console.error.bind(console));
     };
   }
   export function deleteTheStudent(id) {
-    console.log('calling action-creator function - deleteTheStudent');
     return function thunk (dispatch) {
       return axios.delete(`/api/students/${id}`)
       .then(res => res.data)
@@ -89,12 +87,11 @@ export function fetchStudents() {
         const action = deleteStudent(studentDeleted);
         dispatch(action);
       })
-      .catch(console.error('not deleted'));
+      .catch(console.error.bind(console));
     };
   }
 
   export function updateTheStudent(id, studentUpdate) {
-    console.log('calling thunk function - updateTheStudent');
     return function thunk (dispatch) {
       return axios.put(`/api/students/${id}`, studentUpdate)
       .then(res => res.data)
@@ -102,7 +99,7 @@ export function fetchStudents() {
         const action = updateStudent(student);
         dispatch(action);
       })
-      .catch(console.error('not updated'));
+      .catch(console.error.bind(console));
     };
   }
 //Reducer functions

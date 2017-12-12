@@ -1,21 +1,19 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {updateTheStudent} from '../reducers/student-store';
+import { updateTheStudent } from '../reducers/student-store';
 
-export function Student(props) {
-  console.log('entering Student', props)
-  //get data we need from props passed down by the CampusContainer
-  const studentId = +props.studentId;
-  const student =  props.students.find(student => student.id === studentId);
+export function Student (props) {
+  const studentId = +props.studentId
+  const student = props.students.find(student => student.id === studentId);
+  console.log('student', student);
 
   return (
     <div>
-      <div className="centered">
+      <div className='centered'>
         <h2>Student Details: </h2>
       </div>
-      <table className="table">
+      <table className='table'>
         <tbody>
           <tr>
             <td>First Name:</td><td>{student.firstName}</td>
@@ -27,36 +25,37 @@ export function Student(props) {
             <td>Email:</td><td>{student.email}</td>
           </tr>
           <tr>
-            <td>Campus:</td><td><NavLink to={`/campuses/${student.campusId}`}><td>{student.campus ? student.campus.id : 'None'}</td></NavLink></td>
+            <td>Campus:</td>
+            <td>
+              <NavLink to={`/campuses/${student.campusId}`}>
+                <td>{student.campusId ? student.campusId : 'None'}</td>
+              </NavLink>
+            </td>
           </tr>
         </tbody>
       </table>
-      <NavLink className="btn btn-default" to={`/students/${student.id}/edit`}>Edit</NavLink>
+      <NavLink className='btn btn-default' to={`/students/${student.id}/edit`}>Edit</NavLink>
     </div>
-  );
+  )
 }
-const mapStateToProps = function(state, ownProps){
-  return{
-        studentId: ownProps.match.params.studentId,
-        campuses: state.campuses,
-        students: state.students
+const mapStateToProps = function (state, ownProps) {
+  return {
+    studentId: ownProps.match.params.studentId,
+    campuses: state.campuses,
+    students: state.students
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log('entering mapDispatchToProps of Student');
-  const campusId = ownProps.match.params.studentId;
+    // const campusId = ownProps.match.params.studentId;
   return {
-    handleClick(e) {
+    handleClick (e) {
       e.preventDefault();
       const studentId = e.target.value;
-      const student1 =  ownProps.students.find(student => student.id === studentId);
-      dispatch(updateTheStudent(studentId, student1));
+      const student1 = ownProps.students.find(student => student.id === studentId)
+      dispatch(updateTheStudent(studentId, student1))
     }
-  }
-}
+  };
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Student);
+export default connect(mapStateToProps, mapDispatchToProps)(Student);

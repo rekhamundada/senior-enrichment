@@ -11,17 +11,17 @@ router.get('/', function(req, res, next){
 
 router.get('/:id', function (req, res, next) {
   Students.findById(req.params.id)
-        .then(function (student) {
-          res.json(student);
-        })
-        .catch(next);
+    .then(function (student) {
+      res.json(student);
+    })
+    .catch(next);
 });
 router.post('/', function (req, res, next) {
   Students.create(req.body)
-        .then(function (newStudents) {
-          res.json(newStudents);
-        })
-        .catch(next);
+    .then(function (newStudents) {
+      res.json(newStudents);
+    })
+    .catch(next);
 });
 router.put('/:id', function (req, res, next) {
   Students.update(req.body, {
@@ -30,21 +30,23 @@ router.put('/:id', function (req, res, next) {
     },
     returning: true
   })
-        .then(function (updated) {
-          res.json(updated[1][0]);
-        })
-        .catch(next);
+   .then(function (updated) {
+     res.json(updated[1][0]);
+    })
+    .catch(next);
 });
 
 router.delete('/:id', function (req, res, next) {
   Students.destroy({
-    where: {
+    where:
+    {
     id: req.params.id
-  }})
+    }
+  })
    .then(function (deletedStudents) {
      res.json(deletedStudents);
-    })
-    .catch(next);
+  })
+  .catch(next);
 });
 
 module.exports = router;
